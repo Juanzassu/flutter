@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
  
 class MyApp extends StatelessWidget {
-  @override
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Imagenes',
@@ -11,10 +11,17 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Imagenes'),
         ),
-        body: Image(image: NetworkImage('https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg'),)
-          
+        body:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(20.0),
+      
+          child: Image(image: NetworkImage('https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg'),))
         
-      ) 
+        
+      ]))
     );
   }
 }

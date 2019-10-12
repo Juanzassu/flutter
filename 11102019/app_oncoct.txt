@@ -1,0 +1,252 @@
+
+import 'package:flutter/material.dart';
+
+main()=>runApp(Controles());
+
+class Controles extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return Estado();
+  }
+}
+
+class Estado extends State{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Text Field'),
+        ),
+        body: TextField(
+          onChanged: (cambio){
+            print(cambio);
+
+          },
+        ),
+      ),
+    );
+  }
+/////////////////////////////////////////Change setState para actualizar
+
+import 'package:flutter/material.dart';
+
+main()=>runApp(Controles());
+
+class Controles extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return Estado();
+  }
+}
+
+class Estado extends State{
+
+  double precio, iva, precioTotal;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Text Field'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                onChanged: (cambio){
+                  print(cambio);
+                  setState(() {
+                    precio = double.parse(cambio);
+                    iva= precio*0.16;
+                    precioTotal = precio*1.16;
+                  });
+
+
+                },
+                decoration: InputDecoration(
+                  icon: Icon(Icons.ac_unit),
+                  labelText: 'Precio',
+                  hintText: 'Escribe el Precio',
+                  helperText: 'Este Precio no incluye IVA',
+                    border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                )
+                ),
+              ),
+              Text('Precio: $precio'),
+              Text('IVA: $iva'),
+              Text('Costo Total: $precioTotal'),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+/////////////////////////////////
+
+import 'package:flutter/material.dart';
+
+main()=>runApp(Controles());
+
+class Controles extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return Estado();
+  }
+}
+
+class Estado extends State{
+
+  double precio, iva, precioTotal;
+  bool haveMem = false;
+  bool popCorn = true;
+  bool popCornCube = true;
+  String movie;
+  double satis=0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Text Field'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          TextField(
+                            onChanged: (cambio){
+                              print(cambio);
+                              setState(() {
+                                precio = double.parse(cambio);
+                                iva= precio*0.16;
+                                precioTotal = precio*1.16;
+                              });
+
+
+                            },
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.ac_unit),
+                              labelText: 'Precio',
+                              hintText: 'Escribe el Precio',
+                              helperText: 'Este Precio no incluye IVA',
+                                border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)
+                            )
+                            ),
+                          ),
+                          Text('Precio: $precio'),
+                          Text('IVA: $iva'),
+                          Text('Costo Total: $precioTotal'),
+
+                          Checkbox(
+                            value:  haveMem,
+                            onChanged: (cambio){
+                              setState(() {
+                                haveMem = cambio;
+                              });
+                            },
+                          ),
+                          Text('¿Ya eres miembro?'),
+
+                          Switch(
+                            value: popCorn,
+                            onChanged: (cambio){
+
+                              setState(() {
+                                popCorn = cambio;
+                              });
+
+                            },
+                          ),
+                          Text('¿Quieres palomitas?'),
+
+                          SwitchListTile(
+                            value: popCornCube,
+                            title: Text('¿Quiéres cubeta palomera?'),
+                            subtitle: Text('Es del bromas'),
+                            secondary: Icon(Icons.fastfood),
+                            isThreeLine: true,
+                            onChanged: (cambio){
+                              setState(() {
+                                popCornCube = cambio;
+                              });
+                            },
+                          ),
+                          Text('Con cubeta: $popCornCube'),
+
+                          Radio(
+                            value: 'Toy Story 4',
+                          groupValue: movie,
+                          onChanged: (cambio){
+                              setState(() {
+                                movie = cambio;
+                              });
+                          },
+                          ),
+                          Radio(
+                            value: 'El Bromas',
+                            groupValue: movie,
+                            onChanged: (cambio){
+                              setState(() {
+                                movie = cambio;
+                              });
+                            },
+                          ),
+                          Radio(
+                            value: 'El lioncito Rey',
+                            groupValue: movie,
+                            onChanged: (cambio){
+                              setState(() {
+                                movie = cambio;
+                              });
+                            },
+                          ),
+
+                          Text('Tu pelicula es: $movie'),
+
+                            Slider(
+                              value: satis,
+                            min: 0.0,
+                            max: 10.0,
+                              divisions: 10,
+                              label: 'Calificación: $satis',
+
+                              onChanged: (cambio){
+                                setState(() {
+                                  satis = cambio;
+                                });
+                              },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          )
+        ),
+      ),
+    );
+  }
+}
+}
+}

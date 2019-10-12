@@ -1,0 +1,250 @@
+
+-----------Flutter outline
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body: Container(
+              child:
+              Text('Contenido del cuerpo'),
+            padding: EdgeInsets.all(30),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black45,
+                  offset: Offset(10, 15),
+                  blurRadius: 5.0,
+                )
+              ],
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                width: 4.0,
+                color: Colors.greenAccent,
+              )
+            ),
+            margin: EdgeInsets.all(50),
+          ),
+          )
+        );
+  }
+}
+---------------------------------------------------- Boton
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body:
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+              child:
+              FlatButton(
+                color: Colors.cyanAccent,
+                child:
+              Text('Enviar'),
+                onPressed: (){
+                                    
+                },
+
+    )
+    )
+    )
+    );
+  }
+}
+------------------------------------------------- Alineacion de imagenes
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body:
+              Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Image.asset('assets/images/jinx.jpg',),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: Image.asset('assets/images/jhin.jpg',),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: Image.asset('assets/images/akali.jpg',),
+                    flex: 3,
+                  )
+                ],
+              ),
+        )
+    );
+  }
+
+  //se deben agregar los assets a pubsec.yaml de esta forma
+    #  - images/a_dot_ham.jpeg
+
+  assets:
+    - assets/images/
+
+--------------------
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body:
+            ListView(
+              children: [
+                Text('La poderosa Jinx a 60'),
+                Image.asset('assets/images/jinx.jpg', width: 60),
+                Text('El artista Jhin a 60'),
+                Image.asset('assets/images/jhin.jpg', width: 60),
+                Text('La gran asesina Akali a 60'),
+                Image.asset('assets/images/akali.jpg', width: 60),
+                Text('La poderosa Jinx a 40'),
+                Image.asset('assets/images/jinx.jpg', width: 40),
+                Text('El artista Jhin a 40'),
+                Image.asset('assets/images/jhin.jpg', width: 40),
+                Text('La gran asesina Akali a 40'),
+                Image.asset('assets/images/akali.jpg',width: 40),
+
+              ],
+            )
+
+    )
+
+    );
+  }
+}
+
+---------------------------------CARDS
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body:
+            Center(
+              child: Card(
+                child:
+                Image.asset('assets/images/jinx.jpg', width: 200),
+                elevation: 10.0,
+                color: Colors.blue,
+              ),
+            )
+
+
+    )
+
+    );
+  }
+}
+
+-------------------------------Lista con card que se parece a fb :'D
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(Vista());
+
+class Vista extends StatelessWidget{
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch:
+          Colors.green
+      ),
+        home: Scaffold(
+          appBar: AppBar(
+              title: Text('Vistas')
+          ),
+          body:
+          ListView (
+            children: <Widget>[
+              Card (
+                child: ListTile(
+                  leading: Image.asset('assets/images/akali.jpg', width: 50),
+                  title : Text('La poderosa Akali'),
+                  subtitle: Text('Asesino muerte matar''\nTiene el poder de desmembrarte sin que te enteres prro'),
+                  trailing: Icon(Icons.audiotrack),
+                  isThreeLine: true,
+                ),
+              ),
+              Card (
+                child: ListTile(
+                  leading: Image.asset('assets/images/jinx.jpg', width: 50),
+                  title : Text('La loca Jinx'),
+                  subtitle: Text('Loca de atar''\nAlcanzame si puedes manco'),
+                  trailing: Icon(Icons.audiotrack),
+                  isThreeLine: true,
+                ),
+              ),
+              Card (
+                child: ListTile(
+                  leading: Image.asset('assets/images/jhin.jpg', width: 50),
+                  title : Text('El artista Jhin'),
+                  subtitle: Text('Arte rojo''\n¡¡¡¡CUATRO!!!!'),
+                  trailing: Icon(Icons.audiotrack),
+                  isThreeLine: true,
+                ),
+              ),
+              
+              
+            ],
+          )
+
+    )
+
+    );
+  }
+}
+
+
+
+

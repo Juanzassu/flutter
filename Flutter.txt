@@ -1,0 +1,398 @@
+
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'MiWidget.dart';
+
+//void main() => runApp(MyWidget());
+main() => runApp(MiWidget2());
+
+class MiWidget2 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Estado();
+  }
+}
+class Estado extends State<MiWidget2>{
+  //double gan=0, inv=1;
+  int i=0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home:
+          Scaffold(
+              appBar: AppBar(
+                title: Text('Mi StateFul'),
+              ),
+            body:
+                Center(
+                       child: Text('Decidiste hacerlo en $i bloques entonces: tu ganancias es de ____ '),
+            ),
+            floatingActionButton: FloatingActionButton(
+              child:
+                Icon(Icons.add),
+                onPressed:  (){
+                setState(() {
+                  for(i=1; i<13; i++){
+                   print('el valor de i es $i');
+
+                  }
+                });
+
+              }
+            ),
+          ),
+
+    );
+  }
+
+
+
+}
+////////////////////////////////////////
+
+import 'package:flutter/material.dart';
+
+main() => runApp(Gestos());
+
+class Gestos extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return Estado();   
+  }
+}
+
+class Estado extends State {
+
+  String gestos = 'Gestos';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text(gestos),
+
+          ),
+          body:
+          GestureDetector(
+            child:
+            Image.network(
+                'https://assets.bigcartel.com/product_images/210109579/Jinx.png'),
+            onTap: () {
+              setState(() {
+                gestos = 'Diste un Tap prro';
+              });
+            },
+            onDoubleTap: (){
+              setState(() {
+                gestos = 'Deja de tocarme prro';
+              });
+            },
+            onLongPress: (){
+              setState(() {
+                gestos = 'Y sigues...';
+              });
+            },
+          )
+      ),
+    );
+  }
+}
+
+/////////////////////////////////////////tabs
+
+import 'package:flutter/material.dart';
+
+main() => runApp(Gestos());
+
+class Gestos extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return Estado();   
+  }
+}
+
+class Estado extends State {
+
+  String gestos = 'Gestos';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:
+        DefaultTabController(
+          length: 3,
+          child:
+          Scaffold(
+              appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 90, 60, 90),
+                leading: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_left),
+                  onPressed: () {
+                    print('Te regresaste');
+                  },
+                ),
+                title: Text('WhatsApp'),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      print('Buscas algo');
+                    },
+                  ),
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              print('Seleccionaste el menú');
+            },
+          )
+          ],
+                bottom: TabBar(
+                  tabs:[
+                    Tab(child: Text('CHATS'),),
+                    Tab(child: Text('ESTADOS'),),
+                    Tab(child: Text('LLAMADAS'),),
+                  ],
+                ),
+
+        ),
+              body:
+              GestureDetector(
+                child:
+                Text('Presioname una vez prro'),
+                onTap: () {
+                  setState(() {
+                    gestos = 'Tap sencillo sobre texto';
+                  });
+                },
+              )
+          ),
+        )
+    );
+  }
+}
+//////////////////////Barritas de Whats
+
+import 'package:flutter/material.dart';
+
+main() => runApp(Gestos());
+
+class Gestos extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return Estado();   
+  }
+}
+
+class Estado extends State {
+
+  String gestos = 'Gestos';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:
+        DefaultTabController(
+          length: 4,
+          child:
+          Scaffold(
+              appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 7, 94, 84),
+                leading: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_left),
+                  onPressed: () {
+                    print('Te regresaste');
+                  },
+                ),
+                title: Text('WhatsApp'),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      print('Buscas algo');
+                    },
+                  ),
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              print('Seleccionaste el menú');
+            },
+          )
+          ],
+                bottom: TabBar(
+                  tabs:[
+                    Tab(child: Icon(Icons.camera_alt),),
+                    Tab(child: Text('CHATS'),),
+                    Tab(child: Text('ESTADOS'),),
+                    Tab(child: Text('LLAMADAS'),),
+                  ],
+                ),
+
+        ),
+              body:
+              TabBarView(
+                children: [
+                  Center(child: Text('Vista de Cámara krnal')),
+                  Center(child: Text('Mensajes escritos')),
+                  Center(child: Text('Si revisas los estados el burro se la come :v')),
+                  Center(child: Text('La tia también se la come toda')),
+                ],
+              ),
+              drawer: Drawer(
+                elevation: 16.0,
+                child: ListView(
+                  children: <Widget>[
+                    Text('Altas, las bajas y las chaparritas'),
+                    Text('Bandeja de Entrada'),
+                    Text('No Deseado'),
+                    Text('Eliminados'),
+                    Text('Imprimir'),
+                    Text('Cerrar sesión')
+                  ],
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.message),
+                backgroundColor: Color.fromARGB(255, 7, 94, 84),
+                onPressed: (){
+                print('Enviando mensaje');
+                },
+
+              ),
+          ),
+        )
+    );
+  }
+}
+//////////////////////
+
+
+
+import 'package:flutter/material.dart';
+
+main() => runApp(Gestos());
+
+class Gestos extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return Estado();   
+  }
+}
+
+class Estado extends State {
+
+  String gestos = 'Gestos';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:
+        DefaultTabController(
+          length: 4,
+          child:
+          Scaffold(
+              appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 7, 94, 84),
+//                leading: IconButton(
+//                  icon: Icon(Icons.keyboard_arrow_left),
+//                  onPressed: () {
+//                    print('Te regresaste');
+//                  },
+//                ),
+                title: Text('WhatsApp'),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      print('Buscas algo');
+                    },
+                  ),
+          IconButton(
+
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              print('Seleccionaste el menú');
+            },
+          )
+          ],
+                bottom: TabBar(
+                  tabs:[
+                    Tab(child: Icon(Icons.camera_alt),),
+                    Tab(child: Text('CHATS'),),
+                    Tab(child: Text('ESTADOS'),),
+                    Tab(child: Text('LLAMADAS'),),
+                  ],
+                ),
+
+        ),
+              body:
+              TabBarView(
+                children: [
+                  Center(child: Text('Vista de Cámara krnal')),
+                  Center(child: Text('Mensajes escritos')),
+                  Center(child: Text('Si revisas los estados el burro se la come :v')),
+                  Center(child: Text('La tia también se la come toda')),
+                ],
+              ),
+              drawer: Drawer(
+                elevation: 10.0,
+                child: ListView(
+                  children: <Widget>[
+                    DrawerHeader(
+                      child: Center(child: Text('Menú')),
+                      decoration: BoxDecoration(
+                        color: Colors.indigo
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.mail),
+                      title: Text('Bandeja de entrada'),
+                      onTap: (){
+                        print('Abriendo Correos');
+                      },
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Icon(Icons.broken_image),
+                      title: Text('No deseado'),
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Icon(Icons.block),
+                      title: Text('Eliminados'),
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Icon(Icons.print),
+                      title: Text('Imprimir'),
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('Salir'),
+                    ),
+                  ],
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.message),
+                backgroundColor: Color.fromARGB(255, 7, 94, 84),
+                onPressed: (){
+                print('Enviando mensaje');
+                },
+
+              ),
+          ),
+        )
+    );
+  }
+}

@@ -14,11 +14,15 @@ class Estado extends State {
 
   double precioHora = 0.0;
   double precioFrac = 0.0;
-  double precioTota = 0.0;
+  double precioTotal = 0.0;
+  int horas=0;
+  int minutos=0;
+  double tiempo_total=0;
   String horaIni;
   String horaFin;
   TimeOfDay time1;
   TimeOfDay time2;
+  TimeOfDay time3;
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +75,14 @@ class Estado extends State {
                   print(varCambio);
                   setState(() {
                     horaIni= varCambio;
-                    time1 = TimeOfDay(hour: int.parse(horaIni.split(":")[0]), minute: int.parse(horaIni.split(":")[1]));
+                    time2 = TimeOfDay(hour: int.parse(horaIni.split(":")[0]), minute: int.parse(horaIni.split(":")[1]));
                   });
                 },
                 decoration: InputDecoration(
                     icon: Icon(Icons.access_time),
-                    labelText: 'Hora de Inicio',
+                    labelText: 'Hora de Llegada',
                     hintText: '¿A qué hora llegaste?',
-                    helperText: 'Es la hora de llegada en formato HH:mm',
+                    helperText: 'Es la hora de entrada en formato HH:mm',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     )
@@ -89,7 +93,7 @@ class Estado extends State {
 
                   print(varCambio);
                   setState(() {
-                    horaIni= varCambio;
+                    horaFin= varCambio;
                     time2 = TimeOfDay(hour: int.parse(horaIni.split(":")[0]), minute: int.parse(horaIni.split(":")[1]));
                   });
                 },
@@ -104,24 +108,16 @@ class Estado extends State {
                 ),
               ),
               TextField(
-                onChanged: (varCambio) {
-
-                  print(varCambio);
+                onChanged: (varCambio){
+                  print(precioTotal);
                   setState(() {
-                    horaIni= varCambio;
-                    time2 = TimeOfDay(hour: int.parse(horaIni.split(":")[0]), minute: int.parse(horaIni.split(":")[1]));
+                    horas=time2.hour-time1.hour;
+                    minutos=time2.minute-time1.minute;
+                    tiempo_total=horas+minutos.abs()/60;
+                    precioTotal = precioHora+precioFrac*tiempo_total;
                   });
                 },
-                decoration: InputDecoration(
-                    icon: Icon(Icons.access_time),
-                    labelText: 'Hora de Fin',
-                    hintText: '¿A qué hora te vas?',
-                    helperText: 'Es la hora de salida en formato HH:mm',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    )
-                ),
-              ),
+              )
             ],
           ),
         ),
